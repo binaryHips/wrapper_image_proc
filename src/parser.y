@@ -20,34 +20,55 @@ char* img_path_out;
 
 void setup_main(){
 
-   fprintf(source_out, "\n\nint main(int argc, char* argv[]){\n");
+   // fprintf(source_out, "\n\nint main(int argc, char* argv[]){\n");
 
-   fprintf(source_out, "   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n");
+   // fprintf(source_out, "   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n");
 
-   fprintf(source_out, "   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n", img_path_in);
-   fprintf(source_out, "   nTaille = nH * nW;\n");
+   // fprintf(source_out, "   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n", img_path_in);
+   // fprintf(source_out, "   nTaille = nH * nW;\n");
 
-   fprintf(source_out, "   int nTaille3 = nTaille * 3;\n   allocation_tableau(ImgIn, OCTET, nTaille3);\n");
-   fprintf(source_out, "   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n", img_path_in);
-   fprintf(source_out, "   allocation_tableau(ImgOut, OCTET, nTaille3);\n");
-
-   
-
-   //loop
-   fprintf(source_out, "   for (int U = 0; U < nW; ++U){\n");
-
-   fprintf(source_out, "      for (int V = 0; V < nH; ++V){\n");
-
-   fprintf(source_out, "         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n");
-
-   fprintf(source_out, "      }\n   }");
-   
-   ///
-
-   fprintf(source_out, "   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n}", img_path_out);
+   // fprintf(source_out, "   int nTaille3 = nTaille * 3;\n   allocation_tableau(ImgIn, OCTET, nTaille3);\n");
+   // fprintf(source_out, "   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n", img_path_in);
+   // fprintf(source_out, "   allocation_tableau(ImgOut, OCTET, nTaille3);\n");
 
    
+
+   // //loop
+   // fprintf(source_out, "   for (int U = 0; U < nW; ++U){\n");
+
+   // fprintf(source_out, "      for (int V = 0; V < nH; ++V){\n");
+
+   // fprintf(source_out, "         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n");
+
+   // fprintf(source_out, "      }\n   }");
    
+   // ///
+
+   // fprintf(source_out, "   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n}", img_path_out);
+
+   
+   const char* template = ("int main(int argc, char* argv[]){\n\
+   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n\
+   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n\
+   nTaille = nH * nW;\n\
+   int nTaille3 = nTaille * 3;\n\
+   allocation_tableau(ImgIn, OCTET, nTaille3);\n\
+   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n\
+   allocation_tableau(ImgOut, OCTET, nTaille3);\n\n\
+   for (int U = 0; U < nW; ++U){\n\
+      for (int V = 0; V < nH; ++V){\n\
+         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n\
+      }\n\
+   }\n\
+   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n\
+}\n\
+");
+
+   fprintf(source_out, template, img_path_in, img_path_in, img_path_out);
+
+
+
+
    
 }
 

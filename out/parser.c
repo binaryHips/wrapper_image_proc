@@ -89,39 +89,60 @@ char* img_path_out;
 
 void setup_main(){
 
-   fprintf(source_out, "\n\nint main(int argc, char* argv[]){\n");
+   // fprintf(source_out, "\n\nint main(int argc, char* argv[]){\n");
 
-   fprintf(source_out, "   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n");
+   // fprintf(source_out, "   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n");
 
-   fprintf(source_out, "   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n", img_path_in);
-   fprintf(source_out, "   nTaille = nH * nW;\n");
+   // fprintf(source_out, "   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n", img_path_in);
+   // fprintf(source_out, "   nTaille = nH * nW;\n");
 
-   fprintf(source_out, "   int nTaille3 = nTaille * 3;\n   allocation_tableau(ImgIn, OCTET, nTaille3);\n");
-   fprintf(source_out, "   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n", img_path_in);
-   fprintf(source_out, "   allocation_tableau(ImgOut, OCTET, nTaille3);\n");
-
-   
-
-   //loop
-   fprintf(source_out, "   for (int U = 0; U < nW; ++U){\n");
-
-   fprintf(source_out, "      for (int V = 0; V < nH; ++V){\n");
-
-   fprintf(source_out, "         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n");
-
-   fprintf(source_out, "      }\n   }");
-   
-   ///
-
-   fprintf(source_out, "   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n}", img_path_out);
+   // fprintf(source_out, "   int nTaille3 = nTaille * 3;\n   allocation_tableau(ImgIn, OCTET, nTaille3);\n");
+   // fprintf(source_out, "   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n", img_path_in);
+   // fprintf(source_out, "   allocation_tableau(ImgOut, OCTET, nTaille3);\n");
 
    
+
+   // //loop
+   // fprintf(source_out, "   for (int U = 0; U < nW; ++U){\n");
+
+   // fprintf(source_out, "      for (int V = 0; V < nH; ++V){\n");
+
+   // fprintf(source_out, "         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n");
+
+   // fprintf(source_out, "      }\n   }");
    
+   // ///
+
+   // fprintf(source_out, "   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n}", img_path_out);
+
+   
+   const char* template = ("int main(int argc, char* argv[]){\n\
+   int nH, nW, nTaille, nR, nG, nB, S;\n   OCTET *ImgIn, *ImgOut;\n\
+   lire_nb_lignes_colonnes_image_ppm(\"%s\", &nH, &nW);\n\
+   nTaille = nH * nW;\n\
+   int nTaille3 = nTaille * 3;\n\
+   allocation_tableau(ImgIn, OCTET, nTaille3);\n\
+   lire_image_ppm(\"%s\", ImgIn, nH * nW);\n\
+   allocation_tableau(ImgOut, OCTET, nTaille3);\n\n\
+   for (int U = 0; U < nW; ++U){\n\
+      for (int V = 0; V < nH; ++V){\n\
+         put_pixel_c(ImgOut, nW, U, V, fragment(U,V, ImgIn, nW, nH));\n\
+      }\n\
+   }\n\
+   ecrire_image_ppm(\"%s\", ImgOut,  nH, nW);\n\
+}\n\
+");
+
+   fprintf(source_out, template, img_path_in, img_path_in, img_path_out);
+
+
+
+
    
 }
 
 
-#line 125 "./out/parser.c"
+#line 146 "./out/parser.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -559,10 +580,10 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    81,    81,    85,    88,    89,    95,    98,   101,   103,
-     105,   106,   107,   110
+       0,   102,   102,   106,   109,   110,   116,   119,   122,   124,
+     126,   127,   128,   131
 };
 #endif
 
@@ -1516,85 +1537,85 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* input: %empty  */
-#line 81 "./src/parser.y"
+#line 102 "./src/parser.y"
         {  //import the header file
             fprintf(source_out, "%s", "#include \"image_ppm.h\" \n");
             (yyval.cval) = malloc(sizeof(custom_data)); (yyval.cval)->name = "input"; (yyval.cval)->counter = 0;
             }
-#line 1525 "./out/parser.c"
+#line 1546 "./out/parser.c"
     break;
 
   case 3: /* input: input line  */
-#line 85 "./src/parser.y"
+#line 106 "./src/parser.y"
                                      { (yyval.cval) = (yyvsp[-1].cval); (yyvsp[-1].cval)->counter++; }
-#line 1531 "./out/parser.c"
+#line 1552 "./out/parser.c"
     break;
 
   case 4: /* line: NEWLINE  */
-#line 88 "./src/parser.y"
+#line 109 "./src/parser.y"
                           {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1537 "./out/parser.c"
+#line 1558 "./out/parser.c"
     break;
 
   case 5: /* line: FRAGMENT  */
-#line 89 "./src/parser.y"
+#line 110 "./src/parser.y"
                    {
             fprintf(source_out, "color fragment(int U, int V, OCTET* ImgIn, int nW, int nH){\n");
             fprintf(source_out, "\tcolor COLOR = color{0, 0, 0};\n{");
             }
-#line 1546 "./out/parser.c"
+#line 1567 "./out/parser.c"
     break;
 
   case 6: /* line: FRAG_END  */
-#line 95 "./src/parser.y"
+#line 116 "./src/parser.y"
                    {
             fprintf(source_out, "}\n  \treturn COLOR;\n}\n\n");
          }
-#line 1554 "./out/parser.c"
+#line 1575 "./out/parser.c"
     break;
 
   case 7: /* line: IN_ACCESS  */
-#line 98 "./src/parser.y"
+#line 119 "./src/parser.y"
                     {
             fprintf(source_out, "get_pixel_safe(ImgIn, nW, nH, ");
          }
-#line 1562 "./out/parser.c"
+#line 1583 "./out/parser.c"
     break;
 
   case 8: /* line: ARG  */
-#line 101 "./src/parser.y"
+#line 122 "./src/parser.y"
                {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1568 "./out/parser.c"
+#line 1589 "./out/parser.c"
     break;
 
   case 9: /* line: CHAR  */
-#line 103 "./src/parser.y"
+#line 124 "./src/parser.y"
                 {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1574 "./out/parser.c"
+#line 1595 "./out/parser.c"
     break;
 
   case 10: /* line: INPUT line  */
-#line 105 "./src/parser.y"
+#line 126 "./src/parser.y"
                      {img_path_in = (yyvsp[-1].input);}
-#line 1580 "./out/parser.c"
+#line 1601 "./out/parser.c"
     break;
 
   case 11: /* line: OUTPUT line  */
-#line 106 "./src/parser.y"
+#line 127 "./src/parser.y"
                       {img_path_out = (yyvsp[-1].output);}
-#line 1586 "./out/parser.c"
+#line 1607 "./out/parser.c"
     break;
 
   case 12: /* line: END  */
-#line 107 "./src/parser.y"
+#line 128 "./src/parser.y"
                  {
             setup_main();
             YYACCEPT;}
-#line 1594 "./out/parser.c"
+#line 1615 "./out/parser.c"
     break;
 
 
-#line 1598 "./out/parser.c"
+#line 1619 "./out/parser.c"
 
       default: break;
     }
@@ -1823,7 +1844,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 115 "./src/parser.y"
+#line 136 "./src/parser.y"
 
 
 int main(int argc, char **argv) {
