@@ -25,7 +25,9 @@ You can find source code in /src. Here's an explanation of how it works.
 
 
 The user write a script like this.
+
 It's akin to shader code. The instructions inside FRAGMENT are c++.
+
 Documentation is in ./packaged/xx/README.txt (in french)
 
 ```cpp
