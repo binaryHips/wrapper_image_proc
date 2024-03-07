@@ -1,0 +1,10 @@
+IN ./images/artemis.ppm
+OUT ./output/test_conv.ppm
+
+FRAGMENT{
+    
+    COLOR = from_YCrCb(
+                to_YCrCb(IN(U,V))
+    );
+    
+}

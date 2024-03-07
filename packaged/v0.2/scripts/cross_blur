@@ -1,0 +1,20 @@
+IN ./images/artemis.ppm
+OUT ./output/artemis_blur.ppm
+
+FRAGMENT{
+    int size = 15;
+    
+    color sum = c(0, 0, 0);
+
+    for (int i= -size; i<size; ++i){
+        
+
+        
+        sum = add(sum, scale(IN(U+i, V), 1.0 / (4.0 * (float)size - 1.0))) ;
+        sum = add(sum, scale(IN(U, V+i), 1.0 / (4.0 * (float)size - 1.0))) ;
+        }
+    sum = sub(sum, scale(IN(U, V), 1.0 / (4.0 * (float)size - 1.0)));
+
+    COLOR = sum;
+
+}

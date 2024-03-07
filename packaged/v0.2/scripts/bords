@@ -1,0 +1,13 @@
+IN ./images/artemis.ppm
+OUT ./output/artemis_bords.ppm
+
+FRAGMENT{
+    
+    int vx, vy;
+
+    vx = lum(IN(U-1, V)) - lum(IN(U+1, V));
+    vy = lum(IN(U, V-1)) - lum(IN(U, V+1));
+
+    if (vx + vy > 15) COLOR = c(255, 255, 255);
+
+}

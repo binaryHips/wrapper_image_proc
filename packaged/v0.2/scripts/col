@@ -1,0 +1,12 @@
+IN ./images/artemis.ppm
+OUT ./output/artemis_col.ppm
+
+FRAGMENT{
+    
+    color in = IN(U, V);
+    
+    if (in.r > in.g && in.r > in.b) {COLOR.r = 255;} 
+    if (in.b > in.g && in.b > in.r) {COLOR.b = 255;}
+    if (in.g > in.r && in.g > in.b) {COLOR.g = 255;}
+
+}

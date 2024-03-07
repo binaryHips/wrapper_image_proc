@@ -1,0 +1,10 @@
+IN ./images/artemis.ppm
+OUT ./output/test_conv_hsv.ppm
+
+FRAGMENT{
+    
+    COLOR = from_HSV(
+                to_HSV(IN(U,V))
+    );
+    
+}

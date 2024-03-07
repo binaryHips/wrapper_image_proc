@@ -1,0 +1,17 @@
+IN ./images/artemis.ppm
+OUT ./output/test_conv_hsv_progressif.ppm
+
+FRAGMENT{
+    COLOR = from_HSV(
+                to_HSV(IN(U,V)));
+    if (V > 120){
+        for (int i = 0; i < 300; ++i){
+
+            COLOR = from_HSV(
+                    to_HSV(COLOR));
+
+        }
+    }
+    
+    
+}

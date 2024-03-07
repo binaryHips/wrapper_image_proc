@@ -1,0 +1,9 @@
+IN ./images/artemis.ppm
+OUT ./output/artemis_grey.ppm
+
+FRAGMENT{
+  {} 
+    int l = lum(IN(U,V));
+    COLOR = c(l, l, l);
+
+}
