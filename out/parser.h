@@ -78,14 +78,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 79 "./src/parser.y"
+#line 74 "./src/parser.y"
 
   char* fragment_code;
   char* input;
   char* output;
-  struct custom_data* cval;
 
-#line 89 "./out/parser.h"
+#line 88 "./out/parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

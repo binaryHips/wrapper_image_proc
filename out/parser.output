@@ -53,7 +53,7 @@ Non-terminaux, suivis des règles où ils apparaissent
 
     $accept (19)
         à gauche: 0
-    input <cval> (20)
+    input (20)
         à gauche: 1 2
         à droite: 0 2
     line (21)

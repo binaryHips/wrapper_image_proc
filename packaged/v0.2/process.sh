@@ -33,6 +33,6 @@ else
 
     rm temp
     if [ "${suppr_source}" == 1 ]; then
-        rm temp.cpp #keep source only if we put the option
+        rm temp.cpp #keep generated source only if we put the option
     fi
 fi

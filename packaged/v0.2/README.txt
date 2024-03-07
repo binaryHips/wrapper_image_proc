@@ -39,7 +39,10 @@ Les variables et fonctions suivantes sont utilisables dans le bloc de code FRAGM
 
 Structures:
 
-    color{.r, .g, .b}: structure de couleur. Utilisée aussi pour stocker les autres formats (auquel cas les champs .r, .g et .b ne correspondent pas à leur contenu!)
+    color{int .r, int .g, int .b}: structure de couleur. Utilisée aussi pour stocker les autres formats entiers (auquel cas les champs .r, .g et .b ne correspondent pas à leur contenu!)
+
+    hsv{float .h, float .s, float .v}: structure de couleur. Utilisée pour stocker le hsv. format flottant. /!\ Pas du HSL https://en.wikipedia.org/wiki/HSL_and_HSV
+
 
 Variables:
 
@@ -65,6 +68,14 @@ Fonctions:
     color to_YCrCb(color source): conversion RGB -> YCrCb. attention, le résultat est une couleur (donc on y accède toujours avec .r, .g, .b)
 
     color from_YCrCb(color source): conversion YCrCb -> RGB.
+
+    hsv to_HSV(color source): conversion RGB -> HSV. Le résultat est de type hsv (les champs sont des flottants dans [0, 1])
+
+    color from_HSV(hsv source): conversion HSV -> RGB
+
+
+    
+
 
 Les fonctions sont implémentées dans images_ppm.h (IN() est get_pixel_safe()).
 

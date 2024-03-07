@@ -7,11 +7,6 @@
  void yyerror(const char *msg);
 
 
-typedef struct custom_data {
-    char* name;
-    int counter;
- } custom_data;
-
 FILE* source_out;
 
 char* img_path_in;
@@ -80,7 +75,6 @@ void setup_main(){
   char* fragment_code;
   char* input;
   char* output;
-  struct custom_data* cval;
 }
 
 %define parse.error verbose
@@ -92,7 +86,6 @@ void setup_main(){
 %token <output> OUTPUT
 %token  END COMM COLOR UNKNOWN
 
-%type <cval> input
 
 %left TIMES SLASH
 %nonassoc UMINUS
@@ -101,10 +94,10 @@ void setup_main(){
 %% 
 input:	{  //import the header file
             fprintf(source_out, "%s", "#include \"image_ppm.h\" \n");
-            $$ = malloc(sizeof(custom_data)); $$->name = "input"; $$->counter = 0;
             }
-			| input line { $$ = $1; $1->counter++; }
+			| input line
 			;
+
 
 line:		  NEWLINE {fprintf(source_out, "%s", $1);}
          | FRAGMENT{

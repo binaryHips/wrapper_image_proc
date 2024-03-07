@@ -223,8 +223,6 @@ void lire_image_pgm(char  nom_image[], OCTET *pt_image, int taille_image)
 /*===========================================================================*/
 
 
-//#define FRAGMENT(T, size, size_row, n_color) int n_color = n_color, size = size, size_row = size_row; int for (int u = 0, v = 0; i <= size; u = u + n_color)
-//#define loop(x,n) for(int x = 0; x < n; ++x)
 
 struct color{
 

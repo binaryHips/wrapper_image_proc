@@ -76,11 +76,6 @@
  void yyerror(const char *msg);
 
 
-typedef struct custom_data {
-    char* name;
-    int counter;
- } custom_data;
-
 FILE* source_out;
 
 char* img_path_in;
@@ -142,7 +137,7 @@ void setup_main(){
 }
 
 
-#line 146 "./out/parser.c"
+#line 141 "./out/parser.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -580,10 +575,10 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_int8 yyrline[] =
 {
-       0,   102,   102,   106,   109,   110,   116,   119,   122,   124,
-     126,   127,   128,   131
+       0,    95,    95,    98,   102,   103,   109,   112,   115,   117,
+     119,   120,   121,   124
 };
 #endif
 
@@ -1537,85 +1532,78 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* input: %empty  */
-#line 102 "./src/parser.y"
+#line 95 "./src/parser.y"
         {  //import the header file
             fprintf(source_out, "%s", "#include \"image_ppm.h\" \n");
-            (yyval.cval) = malloc(sizeof(custom_data)); (yyval.cval)->name = "input"; (yyval.cval)->counter = 0;
             }
-#line 1546 "./out/parser.c"
-    break;
-
-  case 3: /* input: input line  */
-#line 106 "./src/parser.y"
-                                     { (yyval.cval) = (yyvsp[-1].cval); (yyvsp[-1].cval)->counter++; }
-#line 1552 "./out/parser.c"
+#line 1540 "./out/parser.c"
     break;
 
   case 4: /* line: NEWLINE  */
-#line 109 "./src/parser.y"
+#line 102 "./src/parser.y"
                           {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1558 "./out/parser.c"
+#line 1546 "./out/parser.c"
     break;
 
   case 5: /* line: FRAGMENT  */
-#line 110 "./src/parser.y"
+#line 103 "./src/parser.y"
                    {
             fprintf(source_out, "color fragment(int U, int V, OCTET* ImgIn, int nW, int nH){\n");
             fprintf(source_out, "\tcolor COLOR = color{0, 0, 0};\n{");
             }
-#line 1567 "./out/parser.c"
+#line 1555 "./out/parser.c"
     break;
 
   case 6: /* line: FRAG_END  */
-#line 116 "./src/parser.y"
+#line 109 "./src/parser.y"
                    {
             fprintf(source_out, "}\n  \treturn COLOR;\n}\n\n");
          }
-#line 1575 "./out/parser.c"
+#line 1563 "./out/parser.c"
     break;
 
   case 7: /* line: IN_ACCESS  */
-#line 119 "./src/parser.y"
+#line 112 "./src/parser.y"
                     {
             fprintf(source_out, "get_pixel_safe(ImgIn, nW, nH, ");
          }
-#line 1583 "./out/parser.c"
+#line 1571 "./out/parser.c"
     break;
 
   case 8: /* line: ARG  */
-#line 122 "./src/parser.y"
+#line 115 "./src/parser.y"
                {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1589 "./out/parser.c"
+#line 1577 "./out/parser.c"
     break;
 
   case 9: /* line: CHAR  */
-#line 124 "./src/parser.y"
+#line 117 "./src/parser.y"
                 {fprintf(source_out, "%s", (yyvsp[0].input));}
-#line 1595 "./out/parser.c"
+#line 1583 "./out/parser.c"
     break;
 
   case 10: /* line: INPUT line  */
-#line 126 "./src/parser.y"
+#line 119 "./src/parser.y"
                      {img_path_in = (yyvsp[-1].input);}
-#line 1601 "./out/parser.c"
+#line 1589 "./out/parser.c"
     break;
 
   case 11: /* line: OUTPUT line  */
-#line 127 "./src/parser.y"
+#line 120 "./src/parser.y"
                       {img_path_out = (yyvsp[-1].output);}
-#line 1607 "./out/parser.c"
+#line 1595 "./out/parser.c"
     break;
 
   case 12: /* line: END  */
-#line 128 "./src/parser.y"
+#line 121 "./src/parser.y"
                  {
             setup_main();
             YYACCEPT;}
-#line 1615 "./out/parser.c"
+#line 1603 "./out/parser.c"
     break;
 
 
-#line 1619 "./out/parser.c"
+#line 1607 "./out/parser.c"
 
       default: break;
     }
@@ -1844,7 +1832,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 136 "./src/parser.y"
+#line 129 "./src/parser.y"
 
 
 int main(int argc, char **argv) {
