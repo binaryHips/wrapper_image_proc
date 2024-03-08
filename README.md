@@ -21,7 +21,7 @@ I may end up adding a windows version.
 
 ### How it works
 
-You can find source code in /src. Here's an explanation of how it works.
+You can find the source code in /src. Here's an explanation of how it works.
 
 
 The user write a script like this.
