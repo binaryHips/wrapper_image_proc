@@ -6,15 +6,17 @@ This is a little project I made to learn flex and bison, aswell as being able to
 
 ### How to use
 
-On linux:
-Download the whole version folder in ./packaged. It contains all the files needed, aswell as a readme with explainations (only in french as of now).
-There's also a bunch of script examples, and their result.
+- On linux:
+	Download the whole version folder in ./packaged. It contains all the files needed, aswell as a readme with explanations (only in french as of now).
+	There's also a bunch of script examples, and their image results.
 
-If you're not on linux, this should work (?):
 
-First, download the same folder.
-Then, build the content of ./src, and replace the file named "wrapper" in the folder by it.
-Finally, boot a bash interpreter and you should be good to go;
+
+- If you're not on linux, this should work (?):
+
+	First, download the whole folder in ./packaged.
+	Then, build the content of ./src, and replace the file named "wrapper" in the folder by it.
+	Finally, launch a bash interpreter and you should be good to go
 
 I may end up adding a windows version.
 
